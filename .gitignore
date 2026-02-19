@@ -1,0 +1,15 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Environment
+.env
+
+# Data & Database
+vector_db/
+eval_report.json
+
+# IDE
+.vscode/
+.idea/
