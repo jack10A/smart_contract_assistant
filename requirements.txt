@@ -15,6 +15,7 @@ langserve
 # New Deep Learning dependencies
 sentence-transformers
 torch
+torchvision
 transformers
 datasets
 evaluate
