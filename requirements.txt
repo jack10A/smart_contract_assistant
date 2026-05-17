@@ -11,6 +11,7 @@ uvicorn
 pypdf
 docx2txt
 langserve
+sse-starlette
 
 # New Deep Learning dependencies
 sentence-transformers
