@@ -1,0 +1,14 @@
+{
+  "classes": [
+    "legitimate_or_other",
+    "phishing_page"
+  ],
+  "class_to_idx": {
+    "legitimate_or_other": 0,
+    "phishing_page": 1
+  },
+  "idx_to_class": {
+    "0": "legitimate_or_other",
+    "1": "phishing_page"
+  }
+}

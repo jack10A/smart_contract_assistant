@@ -33,6 +33,14 @@ SAFE_TOPIC_PHRASES = [
     "amendment and modification of contract",
     "party obligations and responsibilities",
     "effective date and duration of agreement",
+    "blockchain transaction anomalies",
+    "financial fraud detection in csv",
+    "ether transfer volume analysis",
+    "correlating contract logic with transaction data",
+    "auditing transaction logs for security risks",
+    "suspicious activity in ethereum logs",
+    "explaining csv anomalies in context of smart contracts",
+    "investigating large eth transfers"
 ]
 
 # Hard-block patterns — rejected immediately, no embedding check needed.

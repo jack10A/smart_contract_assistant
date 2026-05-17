@@ -1,0 +1,40 @@
+{
+  "transactionHash": "0xaaaabbbbccccddddeeeeffff0000111122223333444455556666777788889999",
+  "blockNumber": 19445501,
+  "from": "0xA77A00000000000000000000000000000000A77A",
+  "to": "0xC0FFEE000000000000000000000000000000CAFE",
+  "function": "withdraw(uint256)",
+  "value": "0",
+  "gasUsed": 184220,
+  "status": "success",
+  "calls": [
+    {
+      "type": "CALL",
+      "from": "0xC0FFEE000000000000000000000000000000CAFE",
+      "to": "0xA77A00000000000000000000000000000000A77A",
+      "value": "5000000000000000000",
+      "gas": 92110,
+      "status": "success",
+      "note": "External value transfer to caller before balance update"
+    },
+    {
+      "type": "CALL",
+      "from": "0xA77A00000000000000000000000000000000A77A",
+      "to": "0xC0FFEE000000000000000000000000000000CAFE",
+      "function": "withdraw(uint256)",
+      "value": "0",
+      "gas": 64120,
+      "status": "success",
+      "note": "Nested reentrant call into the same vault"
+    },
+    {
+      "type": "DELEGATECALL",
+      "from": "0xC0FFEE000000000000000000000000000000CAFE",
+      "to": "0xDE1E6A7E00000000000000000000000000000000",
+      "function": "executePlugin(bytes)",
+      "gas": 30000,
+      "status": "success",
+      "note": "Plugin code executed in vault storage context"
+    }
+  ]
+}

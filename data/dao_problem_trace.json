@@ -1,0 +1,40 @@
+{
+  "transactionHash": "0xda00000000000000000000000000000000000000000000000000000000000bad",
+  "blockNumber": 20540001,
+  "from": "0xA77A00000000000000000000000000000000A77A",
+  "to": "0xDA0BAD0000000000000000000000000000000000",
+  "function": "withdraw(uint256)",
+  "value": "0",
+  "gasUsed": 188900,
+  "status": "success",
+  "calls": [
+    {
+      "type": "CALL",
+      "from": "0xDA0BAD0000000000000000000000000000000000",
+      "to": "0xA77A00000000000000000000000000000000A77A",
+      "value": "1000000000000000000",
+      "gas": 94450,
+      "status": "success",
+      "note": "External ETH transfer to attacker happens before the balance is reduced"
+    },
+    {
+      "type": "CALL",
+      "from": "0xA77A00000000000000000000000000000000A77A",
+      "to": "0xDA0BAD0000000000000000000000000000000000",
+      "function": "withdraw(uint256)",
+      "value": "0",
+      "gas": 70110,
+      "status": "success",
+      "note": "Nested reentrant withdraw succeeds because the original balance has not been updated yet"
+    },
+    {
+      "type": "CALL",
+      "from": "0xDA0BAD0000000000000000000000000000000000",
+      "to": "0xA77A00000000000000000000000000000000A77A",
+      "value": "1000000000000000000",
+      "gas": 40220,
+      "status": "success",
+      "note": "Second ETH transfer drains extra funds during reentry"
+    }
+  ]
+}

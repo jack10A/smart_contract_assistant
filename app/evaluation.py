@@ -165,6 +165,7 @@ def compute_citation_coverage(answer: str) -> bool:
 def run_evaluation(
     test_cases: List[Dict[str, Any]],
     output_path: str = "eval_report.json",
+    selected_filename: Optional[str] = None,
 ) -> List[Dict[str, Any]]:
     """
     Run the full evaluation suite over a list of test cases.
@@ -175,8 +176,8 @@ def run_evaluation(
 
     Returns a list of result dicts (one per test case) and saves to `output_path`.
     """
-    chain = get_smart_contract_chain()
-    retriever = get_retriever()
+    retriever = get_retriever(selected_filename=selected_filename)
+    chain = get_smart_contract_chain(retriever)
     embeddings = _get_embeddings()
     llm = _get_llm()
 

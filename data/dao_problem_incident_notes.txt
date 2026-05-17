@@ -1,0 +1,27 @@
+DAO problem scenario notes
+
+Contract address:
+0xDA0BAD0000000000000000000000000000000000
+
+Primary exploit transaction:
+0xda00000000000000000000000000000000000000000000000000000000000bad
+
+Attacker-controlled address:
+0xA77A00000000000000000000000000000000A77A
+
+Problem:
+This contract demonstrates the DAO-style reentrancy bug. The withdraw function sends ETH to msg.sender before it reduces balances[msg.sender].
+
+Vulnerable order:
+1. Check the user has enough balance.
+2. Send ETH to msg.sender using call.
+3. Reduce balances[msg.sender] only after the external call returns.
+
+Why this is dangerous:
+A malicious contract can receive the ETH, run fallback code, and call withdraw again before the original balance is reduced. The nested withdraw sees the old balance and sends ETH again.
+
+Expected project results:
+- Solidity audit should flag reentrancy or an external call before state update.
+- Trace analysis should show a nested withdraw call that succeeds.
+- CSV analysis should flag the exploit transaction because it has high gas and abnormal withdrawal value.
+- RAG chat should connect the exploit hash, attacker address, and vulnerable withdraw function.

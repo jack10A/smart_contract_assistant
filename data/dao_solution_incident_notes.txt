@@ -1,0 +1,27 @@
+DAO solution scenario notes
+
+Contract address:
+0xDA05000000000000000000000000000000000000
+
+Primary protected transaction:
+0xda000000000000000000000000000000000000000000000000000000000000f1
+
+Attacker-controlled address:
+0xA77A00000000000000000000000000000000A77A
+
+Problem being solved:
+The original DAO-style bug is reentrancy. A vulnerable contract sends ETH to the caller before updating the caller balance. A malicious fallback function can call withdraw again before the original call finishes.
+
+How this contract solves it:
+- The withdraw function uses a nonReentrant lock.
+- The contract checks the requested amount first.
+- The contract updates balances[msg.sender] before making the external ETH transfer.
+- The external call happens after internal state has already changed.
+- A nested withdraw attempt is rejected with "reentrant call blocked".
+
+Expected project results:
+- Solidity review should see the safer checks-effects-interactions pattern.
+- Slither may still mention a low-level call, but the balance update happens before the call and the lock blocks reentry.
+- Trace analysis should show one successful value transfer and one reverted nested call.
+- CSV analysis should show the attack attempt row as unusual because gas is higher, but the status remains protected.
+- RAG chat should connect the transaction hash, attacker address, and fixed withdraw function.

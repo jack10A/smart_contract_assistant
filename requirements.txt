@@ -1,14 +1,27 @@
+# Existing RAG dependencies
 langchain
-langchain-community
-langchain-core
-langchain-huggingface
 langchain-groq
-langserve[all]
+langchain-huggingface
+langchain-community
+chromadb
+python-dotenv
+gradio
 fastapi
 uvicorn
-gradio
-chromadb
 pypdf
 docx2txt
-python-dotenv
-python-multipart
+langserve
+
+# New Deep Learning dependencies
+sentence-transformers
+torch
+transformers
+datasets
+evaluate
+scikit-learn
+accelerate
+pandas
+matplotlib
+
+# Static analysis
+slither-analyzer

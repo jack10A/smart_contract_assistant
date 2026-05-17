@@ -1,5 +1,6 @@
 # Python
 venv/
+.venv/
 __pycache__/
 *.pyc
 
@@ -9,6 +10,11 @@ __pycache__/
 # Data & Database
 vector_db/
 eval_report.json
+workspace_uploads/
+
+# Frontend
+frontend/.next/
+frontend/node_modules/
 
 # IDE
 .vscode/

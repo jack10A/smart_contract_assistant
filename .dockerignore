@@ -1,6 +1,10 @@
 venv/
+.venv/
 __pycache__/
 *.pyc
 .env
 .git
 .vscode
+workspace_uploads/
+frontend/.next/
+frontend/node_modules/

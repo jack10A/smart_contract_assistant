@@ -1,0 +1,32 @@
+{
+  "transactionHash": "0xda000000000000000000000000000000000000000000000000000000000000f1",
+  "blockNumber": 20550001,
+  "from": "0xA77A00000000000000000000000000000000A77A",
+  "to": "0xDA05000000000000000000000000000000000000",
+  "function": "withdraw(uint256)",
+  "value": "0",
+  "gasUsed": 91240,
+  "status": "success",
+  "calls": [
+    {
+      "type": "CALL",
+      "from": "0xDA05000000000000000000000000000000000000",
+      "to": "0xA77A00000000000000000000000000000000A77A",
+      "value": "1000000000000000000",
+      "gas": 45500,
+      "status": "success",
+      "note": "Value transfer happens after the vault balance was already reduced"
+    },
+    {
+      "type": "CALL",
+      "from": "0xA77A00000000000000000000000000000000A77A",
+      "to": "0xDA05000000000000000000000000000000000000",
+      "function": "withdraw(uint256)",
+      "value": "0",
+      "gas": 24000,
+      "status": "reverted",
+      "error": "reentrant call blocked",
+      "note": "Attacker fallback attempted a nested withdrawal, but the nonReentrant lock rejected it"
+    }
+  ]
+}

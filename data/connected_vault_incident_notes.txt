@@ -1,0 +1,24 @@
+ConnectedVault incident notes
+
+Contract address:
+0xC0FFEE000000000000000000000000000000CAFE
+
+Primary suspicious transaction:
+0xaaaabbbbccccddddeeeeffff0000111122223333444455556666777788889999
+
+Attacker-controlled address:
+0xA77A00000000000000000000000000000000A77A
+
+Observed behavior:
+- The attacker called withdraw(uint256) and received 5 ETH.
+- The runtime trace shows an external CALL from ConnectedVault to the attacker before the balance update.
+- The attacker then made a nested withdraw(uint256) call back into ConnectedVault.
+- A later transaction called executePlugin(bytes), which maps to the delegatecall path in the Solidity source.
+- The contract also uses block.timestamp for unlockTime and extendLock(uint256), so time-based behavior should be reviewed.
+
+Expected project results:
+- Solidity classifier should focus on Reentrancy, Dangerous Delegatecall, or Timestamp Dependency.
+- Slither should report static findings related to external calls, delegatecall, or timestamp usage.
+- CSV anomaly detection should flag the large repeated withdrawals and high gas rows.
+- Trace analysis should connect the nested CALL and DELEGATECALL behavior to the Solidity functions.
+- RAG chat should answer questions about the shared transaction hash, attacker address, and contract address using these files.
